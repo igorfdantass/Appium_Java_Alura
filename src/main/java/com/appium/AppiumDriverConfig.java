@@ -1,4 +1,4 @@
-package org.example;
+package com.appium;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -9,9 +9,12 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class App {
-    public static void main( String[] args ) throws MalformedURLException {
+public class AppiumDriverConfig {
+    public final AppiumDriver driver;
+
+    public AppiumDriverConfig() throws MalformedURLException {
         File apk = new File("C:\\Users\\igor.dantas\\Cursos\\Appium_Java_Alura\\AluraAppium\\src\\main\\resources\\alura_esporte.apk");
+
         DesiredCapabilities configuracoes = new DesiredCapabilities();
         configuracoes.setCapability(MobileCapabilityType.APP, apk.getAbsolutePath());
         configuracoes.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
@@ -19,7 +22,6 @@ public class App {
 
         URL urlConexao = new URL("http://127.0.0.1:4723/wd/hub");
 
-
-        AppiumDriver driver = new AppiumDriver<>(urlConexao,configuracoes);
+        driver = new AppiumDriver<>(urlConexao,configuracoes);
     }
 }
